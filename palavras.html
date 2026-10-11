@@ -429,7 +429,7 @@ textarea { width: 100%; min-height: 12em; padding: 12px; border-radius: 14px; bo
   <p class="foot">
     <span>A fala é processada pelo reconhecimento de voz do seu navegador. Este site não grava nem envia áudio.</span>
     <span>Seu progresso fica só neste aparelho e neste navegador.</span>
-    <span>SpeakFlow Basic · versão 1</span>
+    <span>SpeakFlow Basic · versão 3</span>
   </p>
 </div>
 
@@ -740,6 +740,31 @@ textarea { width: 100%; min-height: 12em; padding: 12px; border-radius: 14px; bo
     setTimeout(function () { if (host.parentNode) host.parentNode.removeChild(host); }, 1000);
   }
 
+  /* Som de acerto: gerado no próprio navegador (Web Audio), sem arquivo de áudio. */
+  var AC = null;
+  function ding(first) {
+    try {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      if (!AC) AC = new Ctx();
+      if (AC.state === 'suspended') AC.resume();
+      var t0 = AC.currentTime + 0.02;
+      var notes = first ? [[523.25, 0], [659.25, .09], [783.99, .18], [1046.5, .27], [2093, .27]] : [[783.99, 0], [1046.5, .1]];
+      notes.forEach(function (n, i) {
+        var o = AC.createOscillator(), g = AC.createGain();
+        var spark = first && i === notes.length - 1;
+        o.type = spark ? 'sine' : 'triangle';
+        o.frequency.value = n[0];
+        var t = t0 + n[1], peak = spark ? .05 : .16, dur = spark ? .5 : (i === notes.length - (first ? 2 : 1) ? .55 : .3);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(peak, t + .015);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        o.connect(g); g.connect(AC.destination);
+        o.start(t); o.stop(t + dur + .05);
+      });
+    } catch (e) {}
+  }
+
   function check(rawText) {
     clearTimeout(typeTimer);
     var c = current();
@@ -792,7 +817,7 @@ textarea { width: 100%; min-height: 12em; padding: 12px; border-radius: 14px; bo
     }
     if (c.why) { var w = el('p', 'why'); w.appendChild(el('b', '', 'Por quê: ')); w.appendChild(document.createTextNode(c.why)); box.appendChild(w); }
     res.appendChild(box);
-    if (ok) burst(); else { var cd = $('card'); cd.classList.remove('shake'); void cd.offsetWidth; cd.classList.add('shake'); }
+    if (ok) { burst(); ding(counted); } else { var cd = $('card'); cd.classList.remove('shake'); void cd.offsetWidth; cd.classList.add('shake'); }
     renderMeta(c); renderList(); renderProg(); renderStrip();
     $('heard').value = '';
     if (listening) setNote(LIVE); else { try { $('heard').focus({ preventScroll: true }); } catch (e0) {} }
