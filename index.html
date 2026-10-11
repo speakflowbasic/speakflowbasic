@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6C5CE7">
+<title>SpeakFlow Basic · Pratique inglês falando</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Lexend:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('sf-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+/* SpeakFlow Basic — base.css
+   Tokens + componentes compartilhados por todas as páginas (index, palavras, lições).
+   O gerador injeta este arquivo dentro de <style>. Não use cores fora destes tokens. */
+
+:root {
+  --bg: #FBF8FF;
+  --surface: #FFFFFF;
+  --sunk: #F3EFFC;
+  --ink: #1B1B2F;
+  --muted: #5E5C78;
+  --line: #E4DEF5;
+  --primary: #6C5CE7;
+  --on-primary: #FFFFFF;
+  --coral: #FF7A59;
+  --sun: #FFC83D;
+  --ok: #1FB67A;
+  --ok-ink: #0B6B47;
+  --ok-soft: #E1F7EE;
+  --err: #E5484D;
+  --err-ink: #B42328;
+  --err-soft: #FDE8E9;
+  --shadow: 0 1px 2px rgba(60, 40, 140, .06), 0 8px 24px -8px rgba(60, 40, 140, .16);
+  --f-title: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'Lexend', 'Segoe UI', system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #12101C;
+  --surface: #1C1A2B;
+  --sunk: #25223A;
+  --ink: #F1EEFA;
+  --muted: #A9A5C4;
+  --line: #34304F;
+  --primary: #8C7FF0;
+  --on-primary: #12101C;
+  --coral: #FF8F73;
+  --sun: #FFD369;
+  --ok: #3ED598;
+  --ok-ink: #3ED598;
+  --ok-soft: rgba(62, 213, 152, .14);
+  --err: #FF6B70;
+  --err-ink: #FF8A8E;
+  --err-soft: rgba(255, 107, 112, .14);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -8px rgba(0, 0, 0, .5);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12101C;
+    --surface: #1C1A2B;
+    --sunk: #25223A;
+    --ink: #F1EEFA;
+    --muted: #A9A5C4;
+    --line: #34304F;
+    --primary: #8C7FF0;
+    --on-primary: #12101C;
+    --coral: #FF8F73;
+    --sun: #FFD369;
+    --ok: #3ED598;
+    --ok-ink: #3ED598;
+    --ok-soft: rgba(62, 213, 152, .14);
+    --err: #FF6B70;
+    --err-ink: #FF8A8E;
+    --err-soft: rgba(255, 107, 112, .14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -8px rgba(0, 0, 0, .5);
+    color-scheme: dark;
+  }
+}
+
+/* Cores de unidade: --c cor sólida, --c-soft fundo suave, --c-ink texto sobre o suave, --c-on texto sobre a sólida */
+.u-violet { --c: #6C5CE7; --c-soft: #EFEDFD; --c-ink: #4B3DB8; --c-on: #FFFFFF; }
+.u-coral  { --c: #FF7A59; --c-soft: #FFEFEA; --c-ink: #A63A1B; --c-on: #2A1208; }
+.u-sun    { --c: #FFC83D; --c-soft: #FFF6DB; --c-ink: #7A5600; --c-on: #2B2100; }
+.u-mint   { --c: #1FB67A; --c-soft: #E1F7EE; --c-ink: #0B6B47; --c-on: #04261A; }
+.u-sky    { --c: #3AA0FF; --c-soft: #E4F2FF; --c-ink: #0F5FA8; --c-on: #04213D; }
+.u-rose   { --c: #F0568A; --c-soft: #FDE8F0; --c-ink: #A3195B; --c-on: #2E0716; }
+:root[data-theme="dark"] .u-violet { --c: #8C7FF0; --c-soft: rgba(140,127,240,.18); --c-ink: #BDB5FF; --c-on: #12101C; }
+:root[data-theme="dark"] .u-coral  { --c: #FF8F73; --c-soft: rgba(255,143,115,.16); --c-ink: #FFB29E; --c-on: #2A1208; }
+:root[data-theme="dark"] .u-sun    { --c: #FFD369; --c-soft: rgba(255,211,105,.15); --c-ink: #FFDE8C; --c-on: #2B2100; }
+:root[data-theme="dark"] .u-mint   { --c: #3ED598; --c-soft: rgba(62,213,152,.15); --c-ink: #7BE5B9; --c-on: #04261A; }
+:root[data-theme="dark"] .u-sky    { --c: #5DB3FF; --c-soft: rgba(93,179,255,.16); --c-ink: #9AD0FF; --c-on: #04213D; }
+:root[data-theme="dark"] .u-rose   { --c: #FF7AA6; --c-soft: rgba(255,122,166,.16); --c-ink: #FFA6C2; --c-on: #2E0716; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .u-violet { --c: #8C7FF0; --c-soft: rgba(140,127,240,.18); --c-ink: #BDB5FF; --c-on: #12101C; }
+  :root:not([data-theme="light"]) .u-coral  { --c: #FF8F73; --c-soft: rgba(255,143,115,.16); --c-ink: #FFB29E; --c-on: #2A1208; }
+  :root:not([data-theme="light"]) .u-sun    { --c: #FFD369; --c-soft: rgba(255,211,105,.15); --c-ink: #FFDE8C; --c-on: #2B2100; }
+  :root:not([data-theme="light"]) .u-mint   { --c: #3ED598; --c-soft: rgba(62,213,152,.15); --c-ink: #7BE5B9; --c-on: #04261A; }
+  :root:not([data-theme="light"]) .u-sky    { --c: #5DB3FF; --c-soft: rgba(93,179,255,.16); --c-ink: #9AD0FF; --c-on: #04213D; }
+  :root:not([data-theme="light"]) .u-rose   { --c: #FF7AA6; --c-soft: rgba(255,122,166,.16); --c-ink: #FFA6C2; --c-on: #2E0716; }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding: 16px 16px 64px;
+}
+.wrap { max-width: 820px; margin: 0 auto; display: grid; gap: 20px; }
+.wrap > * { min-width: 0; }
+h1, h2, h3 { font-family: var(--f-title); margin: 0; line-height: 1.12; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--primary); }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: 6px; }
+.ico { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.muted { color: var(--muted); }
+
+/* Barra do topo */
+.topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 10px; padding: 10px 0; margin-top: -10px; background: var(--bg); box-shadow: 0 1px 0 var(--line); }
+.topbar .home { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--f-title); font-weight: 700; font-size: 1.15rem; color: var(--ink); min-height: 44px; padding-right: 4px; }
+.topbar .home .logo { width: 34px; height: 34px; border-radius: 11px; background: var(--primary); color: var(--on-primary); display: grid; place-items: center; }
+.topbar .home .logo .ico { width: 20px; height: 20px; }
+@media (max-width: 480px) { .topbar .home > span:not(.logo) { display: none; } .topbar .home { min-width: 44px; justify-content: center; padding-right: 0; } }
+.topbar form { flex: 1; display: flex; min-width: 0; position: relative; }
+.topbar input[type="search"] { width: 100%; min-width: 0; min-height: 44px; padding: 8px 8px 8px 42px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); }
+.topbar input[type="search"]::placeholder { color: var(--muted); }
+.topbar form .ico { position: absolute; left: 14px; top: 50%; translate: 0 -50%; color: var(--muted); pointer-events: none; }
+.iconbtn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); display: grid; place-items: center; flex: none; }
+.iconbtn:hover { border-color: var(--primary); }
+
+/* Botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 18px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--surface); font-weight: 500; }
+.btn:hover { border-color: var(--primary); }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.btn.small { min-height: 40px; padding: 6px 14px; font-size: .95rem; }
+.chip { min-height: 40px; padding: 6px 16px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); font-size: .95rem; display: inline-flex; align-items: center; gap: 6px; }
+.chip[aria-pressed="true"] { background: var(--c, var(--primary)); border-color: var(--c, var(--primary)); color: var(--c-on, var(--on-primary)); }
+.chip .n { opacity: .75; font-size: .85em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Rodapé */
+.foot { color: var(--muted); font-size: .9rem; text-align: center; display: grid; gap: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+
+/* ---------- menu inicial ---------- */
+.intro { display: grid; gap: 18px; padding: 8px 4px 0; }
+.wave { display: flex; align-items: center; gap: 5px; height: 54px; }
+.wave i { width: 8px; border-radius: 6px; background: var(--primary); }
+.wave i:nth-child(4n+2) { background: var(--coral); }
+.wave i:nth-child(4n+3) { background: var(--sun); }
+.wave i:nth-child(4n) { background: var(--ok); }
+.intro h1 { font-size: clamp(2.4rem, 9vw, 3.8rem); font-weight: 800; letter-spacing: -.025em; }
+.intro .tag { font-size: 1.2rem; color: var(--muted); max-width: 44ch; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; counter-reset: s; }
+.steps li { counter-increment: s; background: var(--surface); border: 1.5px solid var(--line); border-radius: 20px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
+.steps li::before { content: counter(s); width: 30px; height: 30px; border-radius: 10px; background: var(--primary); color: var(--on-primary); display: grid; place-items: center; font-family: var(--f-title); font-weight: 700; }
+.steps b { font-family: var(--f-title); font-size: 1.1rem; font-weight: 700; }
+.steps span { color: var(--muted); font-size: .95rem; line-height: 1.45; }
+
+.tips { background: var(--sunk); border-radius: 22px; padding: 16px 18px; display: grid; gap: 10px; }
+.tips p { display: flex; gap: 12px; align-items: flex-start; font-size: .98rem; }
+.tips .ico { margin-top: 3px; color: var(--primary); }
+.tips b { font-weight: 600; }
+
+h2.sec { font-size: 1.5rem; font-weight: 700; margin: 8px 0 -4px; }
+.unit { background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 18px; display: grid; gap: 14px; box-shadow: var(--shadow); }
+.unit .uh { display: flex; align-items: center; gap: 14px; }
+.unit .blob { width: 52px; height: 52px; border-radius: 18px; background: var(--c); color: var(--c-on); display: grid; place-items: center; flex: none; }
+.unit .blob .ico { width: 28px; height: 28px; }
+.unit h3 { font-size: 1.35rem; font-weight: 700; }
+.unit .ud { color: var(--muted); font-size: .96rem; }
+.lessons { display: grid; gap: 8px; }
+a.les { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; align-items: center; text-decoration: none; color: var(--ink); background: var(--c-soft); border-radius: 16px; padding: 12px 16px; min-height: 56px; }
+a.les:hover { box-shadow: inset 0 0 0 2px var(--c); }
+a.les .lt { font-weight: 500; }
+a.les .ld { grid-column: 1; color: var(--muted); font-size: .92rem; }
+a.les .go { grid-row: 1 / span 2; grid-column: 2; color: var(--c-ink); display: flex; align-items: center; gap: 8px; font-size: .92rem; font-weight: 500; }
+.bar { width: 56px; height: 8px; border-radius: 6px; background: color-mix(in srgb, var(--c) 25%, transparent); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--c); border-radius: 6px; }
+
+#results h2.sec { font-size: 1.15rem; margin: 14px 0 8px; }
+#results h2 .n { font-weight: 400; color: var(--muted); }
+a.hit { display: block; padding: 12px 16px; margin-bottom: 8px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 16px; color: var(--ink); text-decoration: none; }
+a.hit:hover { border-color: var(--primary); }
+a.hit .where { color: var(--muted); font-size: .88rem; }
+a.hit .main { font-family: var(--f-title); font-weight: 600; font-size: 1.2rem; overflow-wrap: anywhere; }
+a.hit .sub2 { color: var(--muted); font-size: .95rem; overflow-wrap: anywhere; }
+a.hit .say { font-family: var(--f-mono); font-size: .9rem; color: var(--muted); overflow-wrap: anywhere; }
+mark { background: color-mix(in srgb, var(--sun) 55%, transparent); color: inherit; border-radius: 4px; padding: 0 2px; }
+button.more { min-height: 44px; padding: 8px 16px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--surface); margin-bottom: 10px; }
+#empty { color: var(--muted); }
+#install { justify-self: start; }
+@media (max-width: 480px) { body { padding-inline: 12px; } .unit { padding: 14px; } }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<!-- Biblioteca de ícones (traço de 2px, grade 24). Use: <svg class="ico"><use href="#i-nome"/></svg>.
+     Para criar um ícone novo: <symbol id="i-nome" viewBox="0 0 24 24"> ... </symbol> -->
+<symbol id="i-logo" viewBox="0 0 24 24"><path d="M4 12a1 1 0 0 1 1-1M8 8v8M12 5v14M16 8v8M20 11v2"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+<symbol id="i-right" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></symbol>
+<symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3c4 0 5 10 9 10h6M3 17h3c1.5 0 2.5-1.2 3.4-2.8M15 7h6M18 4l3 3-3 3M18 14l3 3-3 3"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 5.1A9.7 9.7 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.2 4.1M6.5 6.6A17 17 0 0 0 2 12s3.5 7 10 7a9.6 9.6 0 0 0 4.4-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+<symbol id="i-snail" viewBox="0 0 24 24"><path d="M3 19h13a5 5 0 0 0 5-5V9a5 5 0 0 0-10 0v4a2 2 0 0 0 4 0v-3"/><path d="M6 19c-1.7 0-3-1.3-3-3V9M3 9l-1-3M3 9l2-3"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.9 6.2.8-4.6 4.3 1.2 6.3L12 17.2 6.4 20.3l1.2-6.3L3 9.7l6.2-.8L12 3z"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 22c4 0 7-2.8 7-6.8 0-3.2-2-5.2-3.5-7.2-.8 1.6-1.8 2.4-3 2.6.4-3-1-6.4-4-8.6.3 3.4-.6 5.2-2 7C5.2 11 5 13 5 15.2 5 19.2 8 22 12 22z"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 14v4M8 21h8M9 18h6"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8M12 17h.01"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></symbol>
+<!-- categorias -->
+<symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 14a4 4 0 0 0 7 0M9 9.5h.01M15 9.5h.01"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20v-.5a5.5 5.5 0 0 1 5.5-5.5h3A5.5 5.5 0 0 1 16 19.500V20M16 4.600a3.500 3.500 0 0 1 0 6.800M18.500 14.300A5.500 5.500 0 0 1 22 19.500V20"/></symbol>
+<symbol id="i-family" viewBox="0 0 24 24"><circle cx="8" cy="6" r="2.5"/><circle cx="17" cy="8" r="2"/><path d="M3 20v-4a5 5 0 0 1 10 0v4M14 20v-3a3.500 3.500 0 0 1 7 0v3"/></symbol>
+<symbol id="i-food" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2.500 1.500-3.500 4-3.500 7 0 2 1 3 3.500 3"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9.500 4 4 0 0 1 17 18H7z"/></symbol>
+<symbol id="i-shirt" viewBox="0 0 24 24"><path d="m8 3-5 3 2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 0 1-8 0z"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.500 4.500 0 0 1 8-3 4.500 4.500 0 0 1 8 3c0 6-8 11-8 11z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2V5z"/><path d="M4 20a2 2 0 0 0 2 2h14v-4"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.600 7.100L4 20l1.100-4.600A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.200 7-11a7 7 0 0 0-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.500c-.5-1-1.500-1.500-3-1.500s-3 .8-3 2 1.200 1.700 3 2 3 .8 3 2-1.500 2-3 2-2.500-.5-3-1.500"/></symbol>
+<symbol id="i-health" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="3"/><path d="M3 11h18M7 17v2M17 17v2"/><circle cx="7.500" cy="14" r=".6"/><circle cx="16.500" cy="14" r=".6"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.500"/><path d="M2 19h20"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.500 2.500 3.500 5.500 3.500 9s-1 6.500-3.500 9c-2.500-2.500-3.500-5.500-3.500-9S9.500 5.500 12 3z"/></symbol>
+<symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/></symbol>
+<symbol id="i-type" viewBox="0 0 24 24"><path d="m4 20 8-16 8 16M7 14h10"/></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M2 14 22 4l-6 16-4-6-10 0zM12 14l10-10"/></symbol>
+<symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 22v-6M12 3l5 7h-3l4 6H6l4-6H7l5-7z"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.500a1.500 1.500 0 0 1 3 0V11M11 10.500V4a1.500 1.500 0 0 1 3 0v7M14 10.500V5.500a1.500 1.500 0 0 1 3 0V13M17 9.500a1.500 1.500 0 0 1 3 0V15a7 7 0 0 1-7 7h-1a7 7 0 0 1-5.500-2.700L3.500 15.500a1.500 1.500 0 0 1 2.300-1.900L8 16"/></symbol>
+</svg>
+
+<div class="wrap">
+  <div class="topbar">
+    <a class="home" href="index.html" aria-label="Início"><span class="logo"><svg class="ico"><use href="#i-logo"/></svg></span><span>SpeakFlow</span></a>
+    <form id="sform" role="search">
+      <svg class="ico"><use href="#i-search"/></svg>
+      <input type="search" id="q" placeholder="Buscar palavra ou frase" aria-label="Buscar em todo o site" autocomplete="off" autocapitalize="off" spellcheck="false">
+    </form>
+    <button type="button" class="iconbtn" id="bTheme" aria-label="Trocar entre tema claro e escuro"><svg class="ico"><use href="#i-moon"/></svg></button>
+  </div>
+
+  <div id="results" aria-live="polite" hidden></div>
+
+  <div id="menu" class="wrap" style="gap:20px">
+    <section class="intro">
+      <div class="wave" aria-hidden="true" id="wave"></div>
+      <h1>SpeakFlow Basic</h1>
+      <p class="tag">Ouça, fale e veja na hora se o computador entendeu. Pratique no seu ritmo, quantas vezes quiser.</p>
+      <button type="button" class="btn primary" id="install" hidden><svg class="ico"><use href="#i-download"/></svg>Instalar como app</button>
+    </section>
+
+    <ol class="steps">
+      <li><b>Escolha a lição</b><span>Cada lição tem cards de palavras e frases.</span></li>
+      <li><b>Toque em Ouvir</b><span>Escute como se diz, quantas vezes precisar.</span></li>
+      <li><b>Fale no microfone</b><span>Diga a palavra ou a frase em voz alta.</span></li>
+      <li><b>Veja se passou</b><span>O card mostra o que foi ouvido e onde errou.</span></li>
+    </ol>
+
+    <section class="tips" aria-label="Antes de começar">
+      <p><svg class="ico"><use href="#i-globe"/></svg><span><b>Use o Chrome ou o Edge.</b> O reconhecimento de voz funciona no Chrome (Android e computador) e no Edge. No iPhone o Safari não tem esse recurso: você ainda pode ouvir os cards e digitar a resposta.</span></p>
+      <p><svg class="ico"><use href="#i-mic"/></svg><span><b>Permita o microfone.</b> Na primeira vez, o navegador pergunta. Toque em Permitir. Se bloquear sem querer, toque no cadeado ao lado do endereço e escolha Microfone &gt; Permitir.</span></p>
+      <p><svg class="ico"><use href="#i-heart"/></svg><span><b>Seu progresso é só seu.</b> Ele fica neste aparelho e neste navegador. Trocar de aparelho ou limpar os dados do navegador apaga o histórico. A fala é processada pelo reconhecimento de voz do navegador, e este site não grava nem envia áudio.</span></p>
+    </section>
+
+    <h2 class="sec">Escolha o que praticar</h2>
+    <div id="units" class="wrap" style="gap:16px"></div>
+  </div>
+
+  <p class="foot"><span>SpeakFlow Basic · versão 1</span></p>
+</div>
+<script src="busca.js"></script>
+<script>
+(function () {
+  'use strict';
+  var SITE = {"unidades":[{"titulo":"Perguntas do dia a dia","resumo":"Por quê? Porque… e perguntas no passado com did.","cor":"violet","icone":"chat","licoes":[{"href":"licoes/licao-12-frases.html","titulo":"Lição 12 · Por quê? Porque…","resumo":"Pergunte o motivo com Why e responda com Because. Ouça a pergunta e diga a resposta.","key":"frases-licao-12-v1","total":15},{"href":"licoes/licao-14-frases.html","titulo":"Lição 14 · Passado com did","resumo":"Aprenda a perguntar no passado com did e a responder com Yes, I did ou No, I didn't. Repita até falar sem traduzir na cabeça.","key":"frases-licao-14-v1","total":20}]}],"palavras":{"total":56}};
+  var DATA = window.BUSCA || [], FORMAS = window.FORMAS || {};
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function ico(name) {
+    var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); s.setAttribute('class', 'ico');
+    var u = document.createElementNS('http://www.w3.org/2000/svg', 'use'); u.setAttribute('href', '#i-' + name);
+    s.appendChild(u); return s;
+  }
+
+  /* onda decorativa */
+  var hs = [18, 34, 50, 26, 42, 14, 36, 54, 30, 20, 44, 28, 12, 38, 22];
+  hs.forEach(function (h) { var i = document.createElement('i'); i.style.height = h + 'px'; $('wave').appendChild(i); });
+
+  /* progresso salvo neste aparelho */
+  function done(key) {
+    try {
+      var o = JSON.parse(localStorage.getItem(key) || 'null');
+      if (!o || !o.stats) return 0;
+      var n = 0;
+      Object.keys(o.stats).forEach(function (id) { var s = o.stats[id]; var cur = s.cur !== undefined ? s.cur : (s.h && s.h[s.h.length - 1]); if (cur === 1) n++; });
+      return n;
+    } catch (e) { return 0; }
+  }
+  function lessonRow(l, icon) {
+    var a = el('a', 'les'); a.href = l.href;
+    a.appendChild(el('span', 'lt', l.titulo));
+    if (l.resumo) a.appendChild(el('span', 'ld', l.resumo));
+    var go = el('span', 'go');
+    var d = Math.min(done(l.key), l.total);
+    var bar = el('span', 'bar'); var fill = el('i'); fill.style.width = (l.total ? Math.round(100 * d / l.total) : 0) + '%'; bar.appendChild(fill);
+    go.appendChild(el('span', '', d + '/' + l.total)); go.appendChild(bar); go.appendChild(ico('right'));
+    a.appendChild(go);
+    return a;
+  }
+  var host = $('units');
+  if (SITE.palavras && SITE.palavras.total) {
+    var uw = el('section', 'unit u-violet');
+    var h0 = el('div', 'uh'); var b0 = el('span', 'blob'); b0.appendChild(ico('book')); h0.appendChild(b0);
+    var t0 = el('div'); t0.appendChild(el('h3', '', 'Palavras')); t0.appendChild(el('p', 'ud', 'Todas as palavras das lições, em um só lugar.')); h0.appendChild(t0);
+    uw.appendChild(h0);
+    var lw = el('div', 'lessons'); lw.appendChild(lessonRow({ href: 'palavras.html', titulo: 'Cards de palavras', resumo: SITE.palavras.total + ' palavras para ouvir e repetir', key: 'palavras-v1', total: SITE.palavras.total })); uw.appendChild(lw);
+    host.appendChild(uw);
+  }
+  SITE.unidades.forEach(function (u) {
+    var s = el('section', 'unit u-' + (u.cor || 'violet'));
+    var h = el('div', 'uh'); var b = el('span', 'blob'); b.appendChild(ico(u.icone || 'globe')); h.appendChild(b);
+    var t = el('div'); t.appendChild(el('h3', '', u.titulo)); if (u.resumo) t.appendChild(el('p', 'ud', u.resumo)); h.appendChild(t);
+    s.appendChild(h);
+    var ls = el('div', 'lessons');
+    u.licoes.forEach(function (l) { ls.appendChild(lessonRow(l)); });
+    s.appendChild(ls); host.appendChild(s);
+  });
+  if (!SITE.unidades.length && !(SITE.palavras && SITE.palavras.total)) host.appendChild(el('p', 'muted', 'As lições aparecem aqui assim que forem publicadas.'));
+
+  /* tema */
+  function themeNow() { return document.documentElement.getAttribute('data-theme') || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+  function syncTheme() { $('bTheme').querySelector('use').setAttribute('href', themeNow() === 'dark' ? '#i-sun' : '#i-moon'); }
+  $('bTheme').addEventListener('click', function () {
+    var n = themeNow() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', n);
+    try { localStorage.setItem('sf-theme', n); } catch (e) {}
+    syncTheme();
+  });
+  syncTheme();
+
+  /* instalar como app */
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; $('install').hidden = false; });
+  $('install').addEventListener('click', function () { if (deferred) { deferred.prompt(); deferred = null; $('install').hidden = true; } });
+
+  /* busca */
+  var TIPOS = [['pal', 'Palavras'], ['fr', 'Frases'], ['dlg', 'Diálogos'], ['q', 'Perguntas'], ['fix', 'Corrija o erro']];
+  var SHOW = 8;
+  var REV = {};
+  Object.keys(FORMAS).forEach(function (b) { FORMAS[b].forEach(function (f) { (REV[f] = REV[f] || []).push(b); }); });
+  function strip(s) { return Array.from(String(s)).map(function (c) { return c.normalize('NFD').charAt(0); }).join('').toLowerCase(); }
+  function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function words(s) { return strip(s).split(/[^a-z0-9']+/).filter(Boolean); }
+  function variants(w) {
+    var v = [w];
+    (FORMAS[w] || []).forEach(function (x) { v.push(x); });
+    (REV[w] || []).forEach(function (b) { v.push(b); (FORMAS[b] || []).forEach(function (x) { v.push(x); }); });
+    return v.filter(function (x, i) { return v.indexOf(x) === i; });
+  }
+  function tokMatch(tok, vs) {
+    for (var i = 0; i < vs.length; i++) {
+      var v = vs[i];
+      if (v.length <= 2 ? tok === v : tok.indexOf(v) === 0) return true;
+      if (v.length >= 6 && tok.length >= 6 && tok.slice(0, 5) === v.slice(0, 5)) return true;
+    }
+    return false;
+  }
+  var blobs = DATA.map(function (it) { return words([it.en, it.pt, it.base || '', it.why || ''].join(' ')); });
+  function search(q) {
+    var qs = words(q);
+    if (!qs.length) return { list: [], vv: [] };
+    var vv = qs.map(variants);
+    var phrase = strip(q).replace(/\s+/g, ' ').trim();
+    var res = [];
+    DATA.forEach(function (it, i) {
+      var toks = blobs[i];
+      if (!vv.every(function (vs) { return toks.some(function (t) { return tokMatch(t, vs); }); })) return;
+      var score = 0, enW = words(it.en);
+      if (qs.length === 1 && enW.length === 1 && vv[0].indexOf(enW[0]) > -1) score += 5;
+      if (it.base && qs.length === 1 && vv[0].indexOf(strip(it.base)) > -1) score += 3;
+      if (strip(it.en).indexOf(phrase) > -1) score += 2;
+      if (enW.some(function (t) { return vv.some(function (vs) { return tokMatch(t, vs); }); })) score += 1;
+      res.push({ it: it, score: score, i: i });
+    });
+    res.sort(function (a, b) { return b.score - a.score || a.i - b.i; });
+    return { list: res, vv: vv };
+  }
+  function mark(host, text, vv) {
+    var flat = [];
+    vv.forEach(function (vs) { vs.forEach(function (v) { if (flat.indexOf(v) < 0) flat.push(v); }); });
+    vv.forEach(function (vs) { vs.forEach(function (v) { if (v.length >= 6 && flat.indexOf(v.slice(0, 5)) < 0) flat.push(v.slice(0, 5)); }); });
+    flat.sort(function (a, b) { return b.length - a.length; });
+    if (!flat.length) { host.textContent = text; return; }
+    var norm = strip(text);
+    var re = new RegExp("(^|[^a-z0-9'])(" + flat.map(esc).join('|') + ")([a-z0-9']*)", 'g');
+    var last = 0, m;
+    while ((m = re.exec(norm))) {
+      var start = m.index + m[1].length, end = start + m[2].length + m[3].length;
+      if (m[2].length <= 2 && m[3].length) continue;
+      if (start > last) host.appendChild(document.createTextNode(text.slice(last, start)));
+      host.appendChild(el('mark', '', text.slice(start, end)));
+      last = end;
+    }
+    if (last < text.length) host.appendChild(document.createTextNode(text.slice(last)));
+  }
+  function line(cls, text, vv) { var d = el('div', cls); if (vv) mark(d, text, vv); else d.textContent = text; return d; }
+  function hit(r, vv) {
+    var it = r.it, a = el('a', 'hit'); a.href = it.h;
+    a.appendChild(line('where', it.onde || (it.a ? 'Lição ' + it.a : 'Palavras')));
+    a.appendChild(line('main', it.en, vv));
+    var sub = it.pt; if (it.base && it.base !== it.en) sub = (it.pt ? it.pt + ' · ' : '') + 'base: ' + it.base;
+    if (sub) a.appendChild(line('sub2', sub, vv));
+    if (it.say) a.appendChild(line('say', it.say));
+    return a;
+  }
+  function render(q) {
+    var box = $('results'), menu = $('menu');
+    box.textContent = '';
+    if (!strip(q).trim()) { box.hidden = true; menu.hidden = false; return; }
+    menu.hidden = true; box.hidden = false;
+    var out = search(q);
+    if (!out.list.length) {
+      var e = el('p', '', 'Nada encontrado para "' + q.trim() + '". Tente outra palavra, em inglês ou em português.'); e.id = 'empty'; box.appendChild(e);
+      var back = el('button', 'btn small', 'Voltar ao início'); back.type = 'button'; back.addEventListener('click', function () { $('q').value = ''; render(''); setUrl(''); }); box.appendChild(back);
+      return;
+    }
+    var n = out.list.length;
+    var tot = el('p', '', n + (n === 1 ? ' resultado' : ' resultados')); tot.id = 'empty'; box.appendChild(tot);
+    TIPOS.forEach(function (tp) {
+      var rows = out.list.filter(function (r) { return r.it.t === tp[0]; });
+      if (!rows.length) return;
+      var h = el('h2', 'sec', tp[1] + ' '); h.appendChild(el('span', 'n', '(' + rows.length + ')')); box.appendChild(h);
+      var wrap = el('div'); box.appendChild(wrap);
+      (function paint(upto) {
+        wrap.textContent = '';
+        rows.slice(0, upto).forEach(function (r) { wrap.appendChild(hit(r, out.vv)); });
+        if (rows.length > upto) {
+          var b = el('button', 'more', 'Mostrar mais ' + (rows.length - upto)); b.type = 'button';
+          b.addEventListener('click', function () { paint(rows.length); });
+          wrap.appendChild(b);
+        }
+      })(SHOW);
+    });
+  }
+  var timer = null;
+  function setUrl(q) { try { history.replaceState(null, '', q ? '?q=' + encodeURIComponent(q) : location.pathname); } catch (e) {} }
+  $('q').addEventListener('input', function () { clearTimeout(timer); var q = $('q').value; timer = setTimeout(function () { render(q); setUrl(q.trim()); }, 120); });
+  $('sform').addEventListener('submit', function (e) { e.preventDefault(); render($('q').value); setUrl($('q').value.trim()); });
+  try {
+    var m = /[?&]q=([^&]*)/.exec(location.search);
+    if (m) { var q0 = decodeURIComponent(m[1].replace(/\+/g, ' ')); $('q').value = q0; render(q0); }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

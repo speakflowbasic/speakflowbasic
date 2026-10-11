@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6C5CE7">
+<title>Por quê? Porque… · SpeakFlow Basic</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Lexend:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('sf-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+/* SpeakFlow Basic — base.css
+   Tokens + componentes compartilhados por todas as páginas (index, palavras, lições).
+   O gerador injeta este arquivo dentro de <style>. Não use cores fora destes tokens. */
+
+:root {
+  --bg: #FBF8FF;
+  --surface: #FFFFFF;
+  --sunk: #F3EFFC;
+  --ink: #1B1B2F;
+  --muted: #5E5C78;
+  --line: #E4DEF5;
+  --primary: #6C5CE7;
+  --on-primary: #FFFFFF;
+  --coral: #FF7A59;
+  --sun: #FFC83D;
+  --ok: #1FB67A;
+  --ok-ink: #0B6B47;
+  --ok-soft: #E1F7EE;
+  --err: #E5484D;
+  --err-ink: #B42328;
+  --err-soft: #FDE8E9;
+  --shadow: 0 1px 2px rgba(60, 40, 140, .06), 0 8px 24px -8px rgba(60, 40, 140, .16);
+  --f-title: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'Lexend', 'Segoe UI', system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #12101C;
+  --surface: #1C1A2B;
+  --sunk: #25223A;
+  --ink: #F1EEFA;
+  --muted: #A9A5C4;
+  --line: #34304F;
+  --primary: #8C7FF0;
+  --on-primary: #12101C;
+  --coral: #FF8F73;
+  --sun: #FFD369;
+  --ok: #3ED598;
+  --ok-ink: #3ED598;
+  --ok-soft: rgba(62, 213, 152, .14);
+  --err: #FF6B70;
+  --err-ink: #FF8A8E;
+  --err-soft: rgba(255, 107, 112, .14);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -8px rgba(0, 0, 0, .5);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12101C;
+    --surface: #1C1A2B;
+    --sunk: #25223A;
+    --ink: #F1EEFA;
+    --muted: #A9A5C4;
+    --line: #34304F;
+    --primary: #8C7FF0;
+    --on-primary: #12101C;
+    --coral: #FF8F73;
+    --sun: #FFD369;
+    --ok: #3ED598;
+    --ok-ink: #3ED598;
+    --ok-soft: rgba(62, 213, 152, .14);
+    --err: #FF6B70;
+    --err-ink: #FF8A8E;
+    --err-soft: rgba(255, 107, 112, .14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -8px rgba(0, 0, 0, .5);
+    color-scheme: dark;
+  }
+}
+
+/* Cores de unidade: --c cor sólida, --c-soft fundo suave, --c-ink texto sobre o suave, --c-on texto sobre a sólida */
+.u-violet { --c: #6C5CE7; --c-soft: #EFEDFD; --c-ink: #4B3DB8; --c-on: #FFFFFF; }
+.u-coral  { --c: #FF7A59; --c-soft: #FFEFEA; --c-ink: #A63A1B; --c-on: #2A1208; }
+.u-sun    { --c: #FFC83D; --c-soft: #FFF6DB; --c-ink: #7A5600; --c-on: #2B2100; }
+.u-mint   { --c: #1FB67A; --c-soft: #E1F7EE; --c-ink: #0B6B47; --c-on: #04261A; }
+.u-sky    { --c: #3AA0FF; --c-soft: #E4F2FF; --c-ink: #0F5FA8; --c-on: #04213D; }
+.u-rose   { --c: #F0568A; --c-soft: #FDE8F0; --c-ink: #A3195B; --c-on: #2E0716; }
+:root[data-theme="dark"] .u-violet { --c: #8C7FF0; --c-soft: rgba(140,127,240,.18); --c-ink: #BDB5FF; --c-on: #12101C; }
+:root[data-theme="dark"] .u-coral  { --c: #FF8F73; --c-soft: rgba(255,143,115,.16); --c-ink: #FFB29E; --c-on: #2A1208; }
+:root[data-theme="dark"] .u-sun    { --c: #FFD369; --c-soft: rgba(255,211,105,.15); --c-ink: #FFDE8C; --c-on: #2B2100; }
+:root[data-theme="dark"] .u-mint   { --c: #3ED598; --c-soft: rgba(62,213,152,.15); --c-ink: #7BE5B9; --c-on: #04261A; }
+:root[data-theme="dark"] .u-sky    { --c: #5DB3FF; --c-soft: rgba(93,179,255,.16); --c-ink: #9AD0FF; --c-on: #04213D; }
+:root[data-theme="dark"] .u-rose   { --c: #FF7AA6; --c-soft: rgba(255,122,166,.16); --c-ink: #FFA6C2; --c-on: #2E0716; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .u-violet { --c: #8C7FF0; --c-soft: rgba(140,127,240,.18); --c-ink: #BDB5FF; --c-on: #12101C; }
+  :root:not([data-theme="light"]) .u-coral  { --c: #FF8F73; --c-soft: rgba(255,143,115,.16); --c-ink: #FFB29E; --c-on: #2A1208; }
+  :root:not([data-theme="light"]) .u-sun    { --c: #FFD369; --c-soft: rgba(255,211,105,.15); --c-ink: #FFDE8C; --c-on: #2B2100; }
+  :root:not([data-theme="light"]) .u-mint   { --c: #3ED598; --c-soft: rgba(62,213,152,.15); --c-ink: #7BE5B9; --c-on: #04261A; }
+  :root:not([data-theme="light"]) .u-sky    { --c: #5DB3FF; --c-soft: rgba(93,179,255,.16); --c-ink: #9AD0FF; --c-on: #04213D; }
+  :root:not([data-theme="light"]) .u-rose   { --c: #FF7AA6; --c-soft: rgba(255,122,166,.16); --c-ink: #FFA6C2; --c-on: #2E0716; }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  padding: 16px 16px 64px;
+}
+.wrap { max-width: 820px; margin: 0 auto; display: grid; gap: 20px; }
+.wrap > * { min-width: 0; }
+h1, h2, h3 { font-family: var(--f-title); margin: 0; line-height: 1.12; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--primary); }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: 6px; }
+.ico { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.muted { color: var(--muted); }
+
+/* Barra do topo */
+.topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 10px; padding: 10px 0; margin-top: -10px; background: var(--bg); box-shadow: 0 1px 0 var(--line); }
+.topbar .home { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--f-title); font-weight: 700; font-size: 1.15rem; color: var(--ink); min-height: 44px; padding-right: 4px; }
+.topbar .home .logo { width: 34px; height: 34px; border-radius: 11px; background: var(--primary); color: var(--on-primary); display: grid; place-items: center; }
+.topbar .home .logo .ico { width: 20px; height: 20px; }
+@media (max-width: 480px) { .topbar .home > span:not(.logo) { display: none; } .topbar .home { min-width: 44px; justify-content: center; padding-right: 0; } }
+.topbar form { flex: 1; display: flex; min-width: 0; position: relative; }
+.topbar input[type="search"] { width: 100%; min-width: 0; min-height: 44px; padding: 8px 8px 8px 42px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); }
+.topbar input[type="search"]::placeholder { color: var(--muted); }
+.topbar form .ico { position: absolute; left: 14px; top: 50%; translate: 0 -50%; color: var(--muted); pointer-events: none; }
+.iconbtn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); display: grid; place-items: center; flex: none; }
+.iconbtn:hover { border-color: var(--primary); }
+
+/* Botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 18px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--surface); font-weight: 500; }
+.btn:hover { border-color: var(--primary); }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.btn.small { min-height: 40px; padding: 6px 14px; font-size: .95rem; }
+.chip { min-height: 40px; padding: 6px 16px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); font-size: .95rem; display: inline-flex; align-items: center; gap: 6px; }
+.chip[aria-pressed="true"] { background: var(--c, var(--primary)); border-color: var(--c, var(--primary)); color: var(--c-on, var(--on-primary)); }
+.chip .n { opacity: .75; font-size: .85em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Rodapé */
+.foot { color: var(--muted); font-size: .9rem; text-align: center; display: grid; gap: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+
+/* ---------- página de prática ---------- */
+.hero { background: var(--c-soft); border-radius: 28px; padding: 20px 22px 22px; display: grid; gap: 14px; }
+.hero .top { display: flex; align-items: center; gap: 16px; }
+.blob { width: 64px; height: 64px; border-radius: 22px; background: var(--c); color: var(--c-on); display: grid; place-items: center; flex: none; }
+.blob .ico { width: 34px; height: 34px; }
+.hero h1 { font-size: clamp(1.65rem, 6vw, 2.4rem); font-weight: 800; letter-spacing: -.01em; }
+.hero .sub { color: var(--muted); margin-top: 4px; max-width: 56ch; }
+.hero .prog { font-size: .95rem; color: var(--c-ink); font-weight: 500; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.hero .prog span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* Mapa da lição: um quadrado por card */
+.strip { display: flex; flex-wrap: wrap; gap: 5px; }
+.seg { width: 24px; height: 24px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--surface); padding: 0; }
+.seg.ok { background: var(--ok); border-color: var(--ok); }
+.seg.err { background: var(--err); border-color: var(--err); }
+.seg[aria-current="true"] { outline: 3px solid var(--c); outline-offset: 2px; }
+
+.chips.groups .chip { min-height: 40px; font-size: .9rem; }
+
+.card { position: relative; background: var(--surface); border: 1px solid var(--line); border-top: 6px solid var(--c); border-radius: 24px; padding: 22px; display: grid; gap: 18px; box-shadow: var(--shadow); overflow: hidden; }
+.card > * { min-width: 0; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: .9rem; color: var(--muted); }
+.pill { display: inline-flex; align-items: center; gap: 6px; background: var(--c-soft); color: var(--c-ink); border-radius: 999px; padding: 4px 12px; font-weight: 500; }
+.pill .ico { width: 1.1em; height: 1.1em; }
+.extra { background: var(--sun); color: #2B2100; border-radius: 8px; padding: 2px 9px; font-size: .85rem; font-weight: 500; }
+.st { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; }
+.dot { width: 11px; height: 11px; border-radius: 50%; background: var(--line); border: 1.5px solid var(--muted); flex: none; }
+.st-ok .dot { background: var(--ok); border-color: var(--ok); }
+.st-err .dot { background: var(--err); border-color: var(--err); }
+
+.bubble { display: flex; align-items: center; gap: 12px; background: var(--sunk); border-radius: 20px 20px 20px 6px; padding: 12px 14px 12px 18px; }
+.bubble .tx { flex: 1; min-width: 0; }
+.bubble .en { font-family: var(--f-title); font-weight: 600; font-size: 1.25rem; line-height: 1.3; overflow-wrap: anywhere; }
+.bubble .pt { color: var(--muted); font-size: .92rem; }
+.lab { color: var(--muted); font-size: .92rem; }
+.prompt { font-family: var(--f-title); font-weight: 700; font-size: clamp(1.7rem, 6.4vw, 2.5rem); line-height: 1.15; overflow-wrap: anywhere; text-wrap: balance; margin-top: 2px; }
+.prompt.big { font-weight: 800; font-size: clamp(2.7rem, 12vw, 4.6rem); line-height: 1.02; letter-spacing: -.02em; }
+.prompt.wrong { color: var(--err-ink); text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: color-mix(in srgb, var(--err) 60%, transparent); }
+.ptsmall { color: var(--muted); font-size: 1.05rem; margin-top: 4px; }
+
+.target { display: grid; gap: 12px; padding: 16px 18px; background: var(--sunk); border-radius: 18px; }
+.target .tt { font-family: var(--f-title); font-weight: 600; font-size: 1.4rem; line-height: 1.3; overflow-wrap: anywhere; }
+.say { display: grid; gap: 2px; }
+.say .v { font-family: var(--f-mono); font-size: 1.2rem; line-height: 1.7; overflow-wrap: anywhere; font-weight: 500; }
+.say .s { color: var(--muted); }
+.say .s.t { color: var(--c-ink); font-weight: 700; box-shadow: inset 0 -.42em 0 color-mix(in srgb, var(--c) 32%, transparent); border-radius: 2px; }
+.say .sep { color: var(--muted); opacity: .7; }
+.blk { font-family: var(--f-mono); font-size: .92rem; color: var(--muted); overflow-wrap: anywhere; }
+.ex { border-top: 1.5px dashed var(--line); padding-top: 10px; display: grid; gap: 2px; }
+.ex .exen { font-weight: 500; }
+.hid { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 14px 16px; border: 2px dashed var(--line); border-radius: 18px; color: var(--muted); }
+.note { color: var(--muted); font-size: .98rem; }
+
+.controls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+.controls .l { justify-self: end; }
+.controls .r { justify-self: start; }
+.mic { position: relative; width: 92px; height: 92px; border-radius: 50%; border: 0; background: var(--primary); color: var(--on-primary); display: grid; place-items: center; box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--primary) 70%, transparent); }
+.mic .ico { width: 40px; height: 40px; position: relative; z-index: 1; }
+.mic::before, .mic::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--coral); opacity: 0; }
+.mic.rec { background: var(--coral); color: #2A1208; }
+.mic.rec::before { animation: ring 1.8s ease-out infinite; }
+.mic.rec::after { animation: ring 1.8s ease-out .9s infinite; }
+@keyframes ring { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.7); opacity: 0; } }
+.toggles { justify-content: center; }
+.micnote { color: var(--muted); font-size: .95rem; min-height: 1.5em; text-align: center; }
+.micnote.bad { color: var(--err-ink); }
+.field { display: grid; gap: 6px; }
+.field .row { display: flex; flex-wrap: wrap; gap: 10px; }
+.field input[type="text"] { flex: 1 1 200px; min-width: 0; min-height: 44px; padding: 8px 14px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--bg); }
+.help { color: var(--muted); font-size: .88rem; }
+
+.res { border-radius: 18px; padding: 16px 18px; display: grid; gap: 10px; border: 2px solid; }
+.res.pass { background: var(--ok-soft); border-color: var(--ok); }
+.res.fail { background: var(--err-soft); border-color: var(--err); }
+.verdict { display: flex; align-items: center; gap: 8px; font-family: var(--f-title); font-weight: 700; font-size: 1.25rem; }
+.res.pass .verdict { color: var(--ok-ink); }
+.res.fail .verdict { color: var(--err-ink); }
+.verdict small { font-family: var(--f-body); font-weight: 400; font-size: .88rem; color: var(--muted); margin-left: auto; }
+.cmp { display: grid; grid-template-columns: 5.2rem 1fr; gap: 4px 10px; align-items: baseline; font-family: var(--f-mono); font-size: .98rem; }
+.cmp .k { color: var(--muted); font-family: var(--f-body); font-size: .9rem; }
+.cmp .v { overflow-wrap: anywhere; }
+.m { color: var(--err-ink); font-weight: 700; text-decoration: underline wavy; text-underline-offset: 4px; }
+.hints { margin: 0; padding-left: 1.2rem; display: grid; gap: 4px; }
+.why { font-size: .98rem; }
+.why b { font-weight: 600; }
+.nav { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.nav .pos { color: var(--muted); font-size: .95rem; }
+
+.list-h { font-size: 1.25rem; margin: 6px 0 12px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+.cell { text-align: left; display: flex; align-items: flex-start; gap: 10px; min-height: 48px; padding: 10px 14px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--surface); min-width: 0; }
+.cell .dot { margin-top: 7px; }
+.cell .t { overflow-wrap: anywhere; }
+.cell[aria-current="true"] { border-color: var(--c); box-shadow: 0 0 0 2px var(--c); }
+.empty { color: var(--muted); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 18px 20px; display: grid; gap: 12px; }
+.panel h2 { font-size: 1.2rem; }
+textarea { width: 100%; min-height: 12em; padding: 12px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--bg); font-family: var(--f-mono); font-size: .88rem; }
+
+.conf i { position: absolute; left: 50%; top: 46%; width: 10px; height: 14px; border-radius: 3px; pointer-events: none; animation: fly .9s cubic-bezier(.2, .7, .3, 1) forwards; }
+@keyframes fly { to { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; } }
+.card.shake { animation: shake .32s; }
+@keyframes shake { 20% { translate: -6px 0; } 40% { translate: 6px 0; } 60% { translate: -4px 0; } 80% { translate: 3px 0; } }
+
+@media (max-width: 480px) {
+  body { padding-inline: 12px; }
+  .card { padding: 18px 16px; }
+  .hero { padding: 16px; }
+  .blob { width: 54px; height: 54px; border-radius: 18px; }
+  .controls { grid-template-columns: 1fr; justify-items: center; }
+  .controls .l, .controls .r { justify-self: center; }
+  .controls .mic { order: -1; }
+  .cmp { grid-template-columns: 4.4rem 1fr; }
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<!-- Biblioteca de ícones (traço de 2px, grade 24). Use: <svg class="ico"><use href="#i-nome"/></svg>.
+     Para criar um ícone novo: <symbol id="i-nome" viewBox="0 0 24 24"> ... </symbol> -->
+<symbol id="i-logo" viewBox="0 0 24 24"><path d="M4 12a1 1 0 0 1 1-1M8 8v8M12 5v14M16 8v8M20 11v2"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+<symbol id="i-right" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></symbol>
+<symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3c4 0 5 10 9 10h6M3 17h3c1.5 0 2.5-1.2 3.4-2.8M15 7h6M18 4l3 3-3 3M18 14l3 3-3 3"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 5.1A9.7 9.7 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.2 4.1M6.5 6.6A17 17 0 0 0 2 12s3.5 7 10 7a9.6 9.6 0 0 0 4.4-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+<symbol id="i-snail" viewBox="0 0 24 24"><path d="M3 19h13a5 5 0 0 0 5-5V9a5 5 0 0 0-10 0v4a2 2 0 0 0 4 0v-3"/><path d="M6 19c-1.7 0-3-1.3-3-3V9M3 9l-1-3M3 9l2-3"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.9 6.2.8-4.6 4.3 1.2 6.3L12 17.2 6.4 20.3l1.2-6.3L3 9.7l6.2-.8L12 3z"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 22c4 0 7-2.8 7-6.8 0-3.2-2-5.2-3.5-7.2-.8 1.6-1.8 2.4-3 2.6.4-3-1-6.4-4-8.6.3 3.4-.6 5.2-2 7C5.2 11 5 13 5 15.2 5 19.2 8 22 12 22z"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3M12 14v4M8 21h8M9 18h6"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8M12 17h.01"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></symbol>
+<!-- categorias -->
+<symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 14a4 4 0 0 0 7 0M9 9.5h.01M15 9.5h.01"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20v-.5a5.5 5.5 0 0 1 5.5-5.5h3A5.5 5.5 0 0 1 16 19.500V20M16 4.600a3.500 3.500 0 0 1 0 6.800M18.500 14.300A5.500 5.500 0 0 1 22 19.500V20"/></symbol>
+<symbol id="i-family" viewBox="0 0 24 24"><circle cx="8" cy="6" r="2.5"/><circle cx="17" cy="8" r="2"/><path d="M3 20v-4a5 5 0 0 1 10 0v4M14 20v-3a3.500 3.500 0 0 1 7 0v3"/></symbol>
+<symbol id="i-food" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 4 0V3M8 3v18M17 21V3c-2.500 1.500-3.500 4-3.500 7 0 2 1 3 3.500 3"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9.500 4 4 0 0 1 17 18H7z"/></symbol>
+<symbol id="i-shirt" viewBox="0 0 24 24"><path d="m8 3-5 3 2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 0 1-8 0z"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.500 4.500 0 0 1 8-3 4.500 4.500 0 0 1 8 3c0 6-8 11-8 11z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2V5z"/><path d="M4 20a2 2 0 0 0 2 2h14v-4"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.600 7.100L4 20l1.100-4.600A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.200 7-11a7 7 0 0 0-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.500c-.5-1-1.500-1.500-3-1.500s-3 .8-3 2 1.200 1.700 3 2 3 .8 3 2-1.500 2-3 2-2.500-.5-3-1.500"/></symbol>
+<symbol id="i-health" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="3"/><path d="M3 11h18M7 17v2M17 17v2"/><circle cx="7.500" cy="14" r=".6"/><circle cx="16.500" cy="14" r=".6"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.500"/><path d="M2 19h20"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.500 2.500 3.500 5.500 3.500 9s-1 6.500-3.500 9c-2.500-2.500-3.500-5.500-3.500-9S9.500 5.500 12 3z"/></symbol>
+<symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/></symbol>
+<symbol id="i-type" viewBox="0 0 24 24"><path d="m4 20 8-16 8 16M7 14h10"/></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M2 14 22 4l-6 16-4-6-10 0zM12 14l10-10"/></symbol>
+<symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 22v-6M12 3l5 7h-3l4 6H6l4-6H7l5-7z"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.500a1.500 1.500 0 0 1 3 0V11M11 10.500V4a1.500 1.500 0 0 1 3 0v7M14 10.500V5.500a1.500 1.500 0 0 1 3 0V13M17 9.500a1.500 1.500 0 0 1 3 0V15a7 7 0 0 1-7 7h-1a7 7 0 0 1-5.500-2.700L3.500 15.500a1.500 1.500 0 0 1 2.300-1.900L8 16"/></symbol>
+</svg>
+
+<div class="wrap u-violet">
+  <div class="topbar">
+    <a class="home" href="../index.html" aria-label="Início"><span class="logo"><svg class="ico"><use href="#i-logo"/></svg></span><span>SpeakFlow</span></a>
+    <form action="../index.html" method="get" role="search">
+      <svg class="ico"><use href="#i-search"/></svg>
+      <input type="search" name="q" placeholder="Buscar palavra ou frase" aria-label="Buscar em todo o site" autocomplete="off">
+    </form>
+    <button type="button" class="iconbtn" id="bTheme" aria-label="Trocar entre tema claro e escuro"><svg class="ico"><use href="#i-moon"/></svg></button>
+  </div>
+
+  <header class="hero">
+    <div class="top">
+      <span class="blob"><svg class="ico"><use href="#i-chat"/></svg></span>
+      <div>
+        <h1>Por quê? Porque…</h1>
+        <p class="sub">Pergunte o motivo com Why e responda com Because. Ouça a pergunta e diga a resposta.</p>
+      </div>
+    </div>
+    <div class="prog" id="prog" aria-live="polite"></div>
+    <div class="strip" id="strip" aria-hidden="true"></div>
+  </header>
+
+  <div class="chips" id="tabs" role="group" aria-label="Tipo de card"></div>
+  <div class="chips groups" id="groups" role="group" aria-label="Grupo"></div>
+
+  <section class="card" id="card" aria-label="Card de prática">
+    <div class="meta">
+      <span class="pill" id="ctag"></span>
+      <span class="extra" id="cextra" hidden>Extra</span>
+      <span class="st" id="cstatus"><span class="dot"></span><span id="cstatust"></span></span>
+    </div>
+    <div class="bubble" id="cctx" hidden>
+      <div class="tx"><div class="en" id="cctxen"></div><div class="pt" id="cctxpt"></div></div>
+      <button type="button" class="iconbtn" id="bCtx" aria-label="Ouvir a fala do colega"><svg class="ico"><use href="#i-volume"/></svg></button>
+    </div>
+    <div>
+      <p class="lab" id="plab"></p>
+      <p class="prompt" id="cprompt"></p>
+      <p class="ptsmall" id="cptsmall"></p>
+    </div>
+    <div id="ctarget"></div>
+    <div class="note" id="cnote"></div>
+
+    <div class="controls">
+      <button type="button" class="btn l" id="bListen"><svg class="ico"><use href="#i-volume"/></svg><span id="bListenT">Ouvir</span></button>
+      <button type="button" class="mic" id="bMic" aria-pressed="false" aria-label="Ligar microfone"><svg class="ico"><use href="#i-mic"/></svg></button>
+      <button type="button" class="btn r" id="bHide" aria-pressed="false"><svg class="ico"><use href="#i-eyeoff"/></svg><span id="bHideT">Esconder o inglês</span></button>
+    </div>
+    <div class="chips toggles">
+      <button type="button" class="chip" id="bSlow" aria-pressed="false"><svg class="ico"><use href="#i-snail"/></svg>Devagar</button>
+      <button type="button" class="chip" id="bAuto" aria-pressed="false"><svg class="ico"><use href="#i-zap"/></svg>Avançar ao acertar</button>
+    </div>
+    <div class="micnote" id="micnote" aria-live="polite"></div>
+
+    <form class="field" id="checkForm" autocomplete="off">
+      <label class="lab" for="heard">O que o microfone ouviu</label>
+      <div class="row">
+        <input type="text" id="heard" placeholder="Aparece aqui. Você também pode digitar." autocapitalize="off" autocorrect="off" spellcheck="false">
+        <button type="submit" class="btn">Conferir</button>
+      </div>
+      <span class="help">Só a primeira tentativa de cada card conta. Depois de errar, repita a versão certa: a repetição aparece, mas não entra na contagem. Sem microfone? Digite a resposta e toque em Conferir.</span>
+    </form>
+
+    <div id="res" aria-live="polite"></div>
+
+    <div class="nav">
+      <button type="button" class="btn small" id="bPrev"><svg class="ico"><use href="#i-left"/></svg>Anterior</button>
+      <span class="pos" id="pos"></span>
+      <button type="button" class="btn small" id="bRand"><svg class="ico"><use href="#i-shuffle"/></svg>Aleatório</button>
+      <button type="button" class="btn small" id="bNext">Próximo<svg class="ico"><use href="#i-right"/></svg></button>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="list-h">Todos os cards deste filtro</h2>
+    <div class="grid" id="list"></div>
+    <p class="empty" id="listEmpty" hidden>Nenhum card neste filtro ainda.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Seu resumo</h2>
+    <p class="help">Mostra os dias em que você praticou, quantos cards saíram certos de primeira e o que falhou. Se quiser, copie e envie ao professor. O resumo não leva seu nome.</p>
+    <div class="chips">
+      <button type="button" class="btn small" id="bSum"><svg class="ico"><use href="#i-copy"/></svg>Gerar e copiar resumo</button>
+      <button type="button" class="btn small" id="bReset"><svg class="ico"><use href="#i-reset"/></svg><span id="bResetT">Recomeçar do zero</span></button>
+    </div>
+    <div id="sumBox"></div>
+    <span class="help" id="sumMsg" aria-live="polite"></span>
+  </section>
+
+  <p class="foot">
+    <span>A fala é processada pelo reconhecimento de voz do seu navegador. Este site não grava nem envia áudio.</span>
+    <span>Seu progresso fica só neste aparelho e neste navegador.</span>
+    <span>SpeakFlow Basic · versão 1</span>
+  </p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var DECK = {"id":"licao-12","key":"frases-licao-12-v1","titulo":"Por quê? Porque…","grupos":[{"id":"too","nome":"Is… too?","icone":"chat"},{"id":"why","nome":"Why… Because","icone":"help"}],"cards":[{"kind":"q","en":"Yes, April's husband is sick too.","say":"IÉS, ÊI-prâlz RÂZ-bând iz SÍK TÚ","grp":"too","why":"April's husband = o marido da April (o 's mostra de quem é). Too fica no fim e quer dizer também.","blocks":"","note":"Em português: Sim, o marido da April está doente também.","alt":["Yes, Aprils husband is sick too."],"conf":{},"extra":false,"pt":"A April está doente. O marido dela está doente também?","q":"April is sick. Is April's husband sick too?","id":"q:April is sick. Is April's husband sick too?"},{"kind":"q","en":"Yes, August's wife is working too.","say":"IÉS, Ó-gâsts UAIF iz UÉR-kin TÚ","grp":"too","why":"-ing no fim do verbo (working) quer dizer está fazendo agora.","blocks":"","note":"Em português: Sim, a esposa do August está trabalhando também.","alt":["Yes, Augusts wife is working too."],"conf":{},"extra":false,"pt":"O August está trabalhando. A esposa dele está trabalhando também?","q":"August is working. Is August's wife working too?","id":"q:August is working. Is August's wife working too?"},{"kind":"q","en":"Sasha is tired because she's taking care of her baby.","say":"SÁ-shâ iz TÁI-ârd bi-CÂZ shiz TÊI-kin KÉR âv râr BÊI-bi","grp":"why","why":"Why abre a pergunta e Because abre a resposta. She's = she is.","blocks":"","note":"Em português: A Sasha está cansada porque está tomando conta do bebê dela.","alt":["Sasha is tired because she is taking care of her baby."],"conf":{},"extra":false,"pt":"Por que a Sasha está cansada?","q":"Why is Sasha tired?","id":"q:Why is Sasha tired?"},{"kind":"q","en":"Because she is sick.","say":"bi-CÂZ shi IZ SÍK","grp":"why","why":"At home = em casa. Em inglês não se usa the nem a.","blocks":"","note":"Em português: Porque ela está doente.","alt":["Because she's sick."],"conf":{},"extra":false,"pt":"Por que a Lisa está trabalhando em casa?","q":"Why is Lisa working at home?","id":"q:Why is Lisa working at home?"},{"kind":"q","en":"Because she needs money.","say":"bi-CÂZ shi NÍDZ MÂ-ni","grp":"why","why":"","blocks":"","note":"Em português: Porque ela precisa de dinheiro.","alt":[],"conf":{},"extra":false,"pt":"Por que a Lisa está trabalhando?","q":"Why is Lisa working?","id":"q:Why is Lisa working?"},{"kind":"q","en":"Because she won the lottery.","say":"bi-CÂZ shi UÂN thâ LÁ-târ-i","grp":"why","why":"Won é o passado de win (ganhar). Aqui ele aparece pronto, só repita a frase.","blocks":"","note":"Em português: Porque ela ganhou na loteria.","alt":[],"conf":{},"extra":false,"pt":"Por que a Nay está feliz?","q":"Why is Nay happy?","id":"q:Why is Nay happy?"},{"kind":"q","en":"Because he's studying.","say":"bi-CÂZ rís STÂ-di-in","grp":"why","why":"He's = he is. Studying = está estudando.","blocks":"","note":"Em português: Porque ele está estudando.","alt":["Because he is studying.","Because hes studying."],"conf":{},"extra":false,"pt":"Por que o Natan está ocupado?","q":"Why is Natan busy?","id":"q:Why is Natan busy?"},{"kind":"q","en":"Lexi is in Canada to study.","say":"LÉK-si iz ín KÉ-nâ-dâ tu STÂ-di","grp":"why","why":"in + país ou cidade: in Canada. to + verbo mostra o motivo: to study = para estudar.","blocks":"","note":"Em português: A Lexi está no Canadá para estudar.","alt":[],"conf":{},"extra":false,"pt":"Por que a Lexi está no Canadá?","q":"Why is Lexi in Canada?","id":"q:Why is Lexi in Canada?"},{"kind":"q","en":"Jeff's in London for work.","say":"DJÉFS ín LÂN-dân fâr UÉRK","grp":"why","why":"Aqui Jeff's = Jeff is. For work = a trabalho.","blocks":"","note":"Em português: O Jeff está em Londres a trabalho.","alt":["Jeff is in London for work.","Jeffs in London for work."],"conf":{},"extra":false,"pt":"Por que o Jeff está em Londres?","q":"Why is Jeff in London?","id":"q:Why is Jeff in London?"},{"kind":"q","en":"Because he's working.","say":"bi-CÂZ rís UÉR-kin","grp":"why","why":"","blocks":"","note":"Extra: não está no material, serve de reforço.","alt":["Because he is working."],"conf":{},"extra":true,"pt":"Por que o Jeff está cansado?","q":"Why is Jeff tired?","id":"q:Why is Jeff tired?"},{"kind":"q","en":"Because he's studying.","say":"bi-CÂZ rís STÂ-di-in","grp":"why","why":"","blocks":"","note":"Extra: não está no material, serve de reforço.","alt":["Because he is studying."],"conf":{},"extra":true,"pt":"Por que o August está ocupado?","q":"Why is August busy?","id":"q:Why is August busy?"},{"kind":"q","en":"Yes, Lisa's husband is working too.","say":"IÉS, LÍ-sâz RÂZ-bând iz UÉR-kin TÚ","grp":"too","why":"","blocks":"","note":"Extra: não está no material, serve de reforço.","alt":["Yes, Lisas husband is working too."],"conf":{},"extra":true,"pt":"O marido da Lisa está trabalhando também?","q":"Is Lisa's husband working too?","id":"q:Is Lisa's husband working too?"},{"kind":"q","en":"Because she's sick.","say":"bi-CÂZ shiz SÍK","grp":"why","why":"","blocks":"","note":"Extra: não está no material, serve de reforço.","alt":["Because she is sick."],"conf":{},"extra":true,"pt":"Por que a April está em casa?","q":"Why is April at home?","id":"q:Why is April at home?"},{"kind":"q","en":"Natan is in London for work.","say":"NÊI-tân iz ín LÂN-dân fâr UÉRK","grp":"why","why":"","blocks":"","note":"Extra: não está no material, serve de reforço.","alt":[],"conf":{},"extra":true,"pt":"Por que o Natan está em Londres?","q":"Why is Natan in London?","id":"q:Why is Natan in London?"},{"kind":"q","en":"Because she needs money.","say":"bi-CÂZ shi NÍDZ MÂ-ni","grp":"why","why":"","blocks":"","note":"Extra: não está no material, serve de reforço.","alt":[],"conf":{},"extra":true,"pt":"Por que a Lexi está trabalhando?","q":"Why is Lexi working?","id":"q:Why is Lexi working?"}]};
+  var BASE = '../';
+  var CARDS = DECK.cards;
+  var KEY = DECK.key;
+  var KLAB = { pal: 'Palavra', fr: 'Frase', q: 'Pergunta', dlg: 'Diálogo', fix: 'Corrija' };
+  var KICON = { pal: 'book', fr: 'chat', q: 'help', dlg: 'users', fix: 'check' };
+  var TABN = { pal: 'Palavras', fr: 'Frases', dlg: 'Diálogos', q: 'Perguntas', fix: 'Corrija' };
+  var ORDER = ['pal', 'fr', 'dlg', 'q', 'fix'];
+  var STLAB = { 'new': 'Novo', err: 'Errou', ok: 'Acertou' };
+
+  /*PURE-START*/
+  var NUMS = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+  var ORD = { first: '1st', second: '2nd', third: '3rd', fourth: '4th', fifth: '5th', sixth: '6th', seventh: '7th', eighth: '8th', ninth: '9th', tenth: '10th', eleventh: '11th', twelfth: '12th', thirteenth: '13th', fourteenth: '14th', fifteenth: '15th', sixteenth: '16th', seventeenth: '17th', eighteenth: '18th', nineteenth: '19th', twentieth: '20th', thirtieth: '30th' };
+  var CONTR = [['i am', "i'm"], ['you are', "you're"], ['we are', "we're"], ['they are', "they're"], ['he is', "he's"], ['she is', "she's"], ['it is', "it's"], ['that is', "that's"], ['what is', "what's"], ['where is', "where's"], ['who is', "who's"], ['how is', "how's"], ['there is', "there's"], ['do not', "don't"], ['does not', "doesn't"], ['did not', "didn't"], ['is not', "isn't"], ['are not', "aren't"], ['was not', "wasn't"], ['were not', "weren't"], ['can not', "can't"], ['cannot', "can't"], ['will not', "won't"], ['i will', "i'll"], ['i have', "i've"], ['let us', "let's"]];
+
+  function norm(s) {
+    s = String(s).toLowerCase().replace(/[’‘`]/g, "'");
+    s = s.replace(/@/g, ' at ');
+    s = s.replace(/([a-z0-9])\.([a-z])/g, '$1 dot $2');
+    s = s.replace(/\be[ -]?mail\b/g, 'email').replace(/\bok(ay)?\b/g, 'ok');
+    s = s.replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim();
+    s = s.split(' ').map(function (w) {
+      if (Object.prototype.hasOwnProperty.call(NUMS, w)) return String(NUMS[w]);
+      if (Object.prototype.hasOwnProperty.call(ORD, w)) return ORD[w];
+      return w;
+    }).join(' ');
+    s = s.replace(/\b([2-9]0) ([1-9])\b/g, function (m, a, b) { return String(+a + +b); });
+    CONTR.forEach(function (p) { s = s.replace(new RegExp('\\b' + p[0] + '\\b', 'g'), p[1]); });
+    return s;
+  }
+
+  function lcsMask(a, b) {
+    var n = a.length, m = b.length, d = [], i, j;
+    for (i = 0; i <= n; i++) { d[i] = []; for (j = 0; j <= m; j++) d[i][j] = 0; }
+    for (i = n - 1; i >= 0; i--) for (j = m - 1; j >= 0; j--)
+      d[i][j] = a[i] === b[j] ? d[i + 1][j + 1] + 1 : Math.max(d[i + 1][j], d[i][j + 1]);
+    var ma = [], mb = [];
+    for (i = 0; i < n; i++) ma[i] = false;
+    for (j = 0; j < m; j++) mb[j] = false;
+    i = 0; j = 0;
+    while (i < n && j < m) {
+      if (a[i] === b[j]) { ma[i] = true; mb[j] = true; i++; j++; }
+      else if (d[i + 1][j] >= d[i][j + 1]) i++; else j++;
+    }
+    return [ma, mb];
+  }
+
+  /* Dicas genéricas de erro (nível A1). ea/ha = palavras esperadas/ouvidas; me/mh = máscaras de acerto. */
+  function hintsFor(ea, ha, me, mh) {
+    var out = [], i, k;
+    var miss = [], extra = [];
+    ea.forEach(function (t, x) { if (!me[x]) miss.push(t); });
+    ha.forEach(function (t, x) { if (!mh[x]) extra.push(t); });
+    function has(arr, x) { return arr.indexOf(x) > -1; }
+    for (i = 1; i < ha.length; i++) {
+      if (!mh[i] && ha[i] === 'it' && /[td]$/.test(ha[i - 1])) {
+        out.push('O T ou D final virou "it". Trave a língua atrás dos dentes, sem soltar ar, e fale em bloco, sem pausa depois da palavra.');
+        break;
+      }
+    }
+    miss.forEach(function (m) {
+      extra.forEach(function (e) {
+        if (out.length > 2 || m === e) return;
+        if (m === e + 's' || m === e + 'es') out.push('Faltou o S no final de "' + m + '". Ele marca plural ou ele/ela.');
+        else if (e === m + 's' || e === m + 'es') out.push('Sobrou o S: o certo é "' + m + '", sem S no final.');
+        else if (m === e + 'ed' || m === e + 'd') out.push('Faltou o -ed no final de "' + m + '" (passado).');
+        else if (m.length > 3 && e.length > 3 && m.slice(0, 3) === e.slice(0, 3)) out.push('Saiu "' + e + '", mas o certo é "' + m + '". Ouça de novo e preste atenção no final da palavra.');
+      });
+    });
+    if (has(miss, 'the') || has(miss, 'a') || has(miss, 'an')) out.push('Faltou o artigo (' + miss.filter(function (t) { return t === 'the' || t === 'a' || t === 'an'; }).join(', ') + '). Em inglês, coisa no singular quase nunca fica sozinha.');
+    if (has(miss, 'i')) out.push('Faltou o "I": em inglês o "eu" sempre aparece.');
+    if (has(miss, 'it')) out.push('Faltou o "it": em inglês a coisa também aparece na frase.');
+    if (!out.length && miss.length && miss.length <= 3) out.push('Faltou dizer: ' + miss.map(function (t) { return '"' + t + '"'; }).join(', ') + '.');
+    if (!out.length && extra.length && extra.length <= 3) out.push('Saiu a mais: ' + extra.map(function (t) { return '"' + t + '"'; }).join(', ') + '.');
+    k = out.slice(0, 3);
+    return k;
+  }
+  /*PURE-END*/
+  window.__SF = { norm: norm, lcsMask: lcsMask, hintsFor: hintsFor };
+
+  var store = { stats: {}, days: [], tab: '', group: 'all', slow: false, auto: false, hide: { fr: true, q: true, dlg: true, fix: true } };
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && typeof o === 'object') {
+        if (o.stats && typeof o.stats === 'object') store.stats = o.stats;
+        if (Array.isArray(o.days)) store.days = o.days.filter(function (d) { return typeof d === 'string'; });
+        if (typeof o.tab === 'string') store.tab = o.tab;
+        if (typeof o.group === 'string') store.group = o.group;
+        store.slow = !!o.slow; store.auto = !!o.auto;
+        if (o.hide && typeof o.hide === 'object') Object.keys(store.hide).forEach(function (k) { if (k in o.hide) store.hide[k] = !!o.hide[k]; });
+      }
+    }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} }
+  function today() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function fmt(d) { return d.slice(8) + '/' + d.slice(5, 7); }
+
+  function dotStatus(id) {
+    var st = store.stats[id];
+    if (!st || !st.h || !st.h.length) return 'new';
+    var cur = st.cur !== undefined ? st.cur : st.h[st.h.length - 1];
+    return cur === 0 ? 'err' : 'ok';
+  }
+
+  var kinds = ORDER.filter(function (k) { return CARDS.some(function (c) { return c.kind === k; }); });
+  if (kinds.indexOf(store.tab) < 0 && store.tab !== 'err') store.tab = kinds[0] || 'fr';
+  var GROUPS = DECK.grupos || [];
+
+  function visible() {
+    var t = store.tab;
+    return CARDS.filter(function (c) {
+      if (t === 'err') return dotStatus(c.id) === 'err';
+      if (c.kind !== t) return false;
+      if (store.group !== 'all') return c.grp === store.group;
+      return true;
+    });
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function ico(name) {
+    var s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('class', 'ico');
+    var u = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    u.setAttribute('href', '#i-' + name);
+    s.appendChild(u); return s;
+  }
+  function setIcon(host, name) { var u = host.querySelector('use'); if (u) u.setAttribute('href', '#i-' + name); }
+
+  var curId = null, shown = false, attemptDone = false;
+  var listening = false, rec = null, wantMic = false, typeTimer = null;
+  var LIVE = 'Ouvindo. Fale o card; cada fala é conferida sozinha.';
+
+  function current() {
+    var v = visible();
+    var c = v.filter(function (x) { return x.id === curId; })[0];
+    if (!c && v.length) { c = v[0]; curId = c.id; }
+    return c || null;
+  }
+  function canHide(c) { return c && c.kind !== 'pal'; }
+  function hideOn(c) { return canHide(c) && !!store.hide[c.kind]; }
+
+  function record(id, ok, heardRaw) {
+    var s = store.stats[id] || { h: [], n: 0, k: 0 };
+    s.h.push(ok ? 1 : 0);
+    if (s.h.length > 6) s.h = s.h.slice(-6);
+    s.n = (s.n || 0) + 1;
+    if (ok) s.k = (s.k || 0) + 1;
+    s.last = String(heardRaw).slice(0, 200);
+    s.cur = ok ? 1 : 0;
+    store.stats[id] = s;
+    var d = today();
+    if (store.days.indexOf(d) < 0) store.days.push(d);
+    save();
+  }
+
+  function setNote(msg, bad) { var n = $('micnote'); n.textContent = msg || ''; n.className = 'micnote' + (bad ? ' bad' : ''); }
+
+  function speak(text) {
+    if (!('speechSynthesis' in window)) { setNote('Este navegador não tem voz para o botão Ouvir.', true); return; }
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = store.slow ? 0.6 : 0.9;
+      var vs = window.speechSynthesis.getVoices();
+      var v = vs.filter(function (x) { return x.lang === 'en-US'; })[0] || vs.filter(function (x) { return /^en/i.test(x.lang); })[0];
+      if (v) u.voice = v;
+      window.speechSynthesis.speak(u);
+    } catch (e) { setNote('Não consegui tocar o áudio neste navegador.', true); }
+  }
+
+  /* "Como se diz": sílaba forte (com letra maiúscula) ganha destaque de cor */
+  function renderSay(host, text) {
+    var box = el('div', 'say');
+    var v = el('div', 'v');
+    String(text).split(/(\s·\s|\s+|-)/).forEach(function (p) {
+      if (!p) return;
+      if (p === '-') { v.appendChild(el('span', 'sep', '-')); return; }
+      if (/^\s+$/.test(p) || p === ' · ') { v.appendChild(document.createTextNode(p === ' · ' ? '  ·  ' : ' ')); return; }
+      var stressed = p !== p.toLowerCase();
+      v.appendChild(el('span', 's' + (stressed ? ' t' : ''), p));
+    });
+    box.appendChild(el('span', 'lab', 'Como se diz'));
+    box.appendChild(v);
+    host.appendChild(box);
+  }
+
+  function fillTokens(host, tokens, mask, joiner) {
+    host.textContent = '';
+    tokens.forEach(function (t, i) {
+      var s = el('span', mask[i] ? '' : 'm', t);
+      host.appendChild(s);
+      if (joiner && i < tokens.length - 1) host.appendChild(document.createTextNode(joiner));
+    });
+  }
+
+  function renderTarget(c) {
+    var host = $('ctarget');
+    host.textContent = '';
+    if (c.kind === 'pal') {
+      var box0 = el('div', 'target');
+      if (c.say) renderSay(box0, c.say);
+      if (c.ex) {
+        var ex = el('div', 'ex');
+        ex.appendChild(el('span', 'exen', c.ex));
+        if (c.expt) ex.appendChild(el('span', 'lab', c.expt));
+        box0.appendChild(ex);
+      }
+      if (c.say || c.ex) host.appendChild(box0);
+      return;
+    }
+    if (!shown) {
+      var d = el('div', 'hid');
+      d.appendChild(el('span', '', c.kind === 'q' ? 'A resposta está escondida. Responda primeiro.' : 'O inglês está escondido. Diga a frase primeiro.'));
+      var b = el('button', 'btn small', 'Mostrar');
+      b.type = 'button';
+      b.addEventListener('click', function () { shown = true; renderTarget(c); });
+      d.appendChild(b); host.appendChild(d);
+      return;
+    }
+    var box = el('div', 'target');
+    box.appendChild(el('span', 'lab', c.kind === 'q' ? 'Resposta certa' : 'Em inglês'));
+    box.appendChild(el('div', 'tt', c.en));
+    if (c.say) renderSay(box, c.say);
+    if (c.blocks) box.appendChild(el('div', 'blk', 'Em blocos: ' + c.blocks));
+    host.appendChild(box);
+  }
+
+  function renderMeta(c) {
+    var tag = $('ctag'); tag.textContent = '';
+    tag.appendChild(ico(KICON[c.kind])); tag.appendChild(document.createTextNode(KLAB[c.kind]));
+    $('cextra').hidden = !c.extra;
+    var s = dotStatus(c.id);
+    $('cstatus').className = 'st st-' + s;
+    $('cstatust').textContent = STLAB[s];
+  }
+
+  function syncHideBtn(c) {
+    var b = $('bHide');
+    b.hidden = !canHide(c);
+    if (!canHide(c)) return;
+    var on = hideOn(c);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    $('bHideT').textContent = on ? 'Esconder o inglês: ligado' : 'Esconder o inglês';
+    setIcon(b, on ? 'eyeoff' : 'eye');
+  }
+
+  function renderCard() {
+    var c = current();
+    $('res').textContent = '';
+    $('heard').value = '';
+    attemptDone = false;
+    $('cctx').hidden = true;
+    $('cptsmall').textContent = '';
+    $('cprompt').className = 'prompt';
+    if (!c) {
+      $('ctag').textContent = ''; $('cextra').hidden = true; $('cstatust').textContent = '';
+      $('plab').textContent = '';
+      $('cprompt').textContent = store.tab === 'err' ? 'Você ainda não errou nenhum card.' : '—';
+      $('ctarget').textContent = ''; $('cnote').textContent = '';
+      $('pos').textContent = '0 de 0'; $('bHide').hidden = true;
+      return;
+    }
+    shown = !hideOn(c);
+    renderMeta(c);
+    var L = $('bListenT');
+    if (c.kind === 'pal') { $('plab').textContent = 'Ouça e repita'; $('cprompt').textContent = c.en; $('cprompt').className = 'prompt big'; $('cptsmall').textContent = c.pt || ''; L.textContent = 'Ouvir'; }
+    else if (c.kind === 'q') { $('plab').textContent = 'Responda em inglês'; $('cprompt').textContent = c.q; $('cptsmall').textContent = c.pt || ''; L.textContent = 'Ouvir pergunta'; }
+    else if (c.kind === 'dlg') {
+      $('cctx').hidden = false; $('cctxen').textContent = c.ctx || ''; $('cctxpt').textContent = c.ctxpt || '';
+      $('cctx').hidden = !c.ctx;
+      $('plab').textContent = 'Você responde'; $('cprompt').textContent = c.pt; L.textContent = 'Ouvir';
+    }
+    else if (c.kind === 'fix') { $('plab').textContent = 'Corrija esta frase'; $('cprompt').textContent = c.errado; $('cprompt').className = 'prompt wrong'; L.textContent = 'Ouvir'; }
+    else { $('plab').textContent = 'Diga em inglês'; $('cprompt').textContent = c.pt; L.textContent = 'Ouvir'; }
+    renderTarget(c);
+    $('cnote').textContent = c.note || '';
+    syncHideBtn(c);
+    var v = visible();
+    $('pos').textContent = (v.map(function (x) { return x.id; }).indexOf(c.id) + 1) + ' de ' + v.length;
+    setNote(listening ? LIVE : '');
+  }
+
+  function burst() {
+    var card = $('card');
+    var host = el('div', 'conf');
+    var cols = ['#6C5CE7', '#FF7A59', '#FFC83D', '#1FB67A', '#3AA0FF', '#F0568A'];
+    for (var i = 0; i < 16; i++) {
+      var p = el('i');
+      var a = (Math.PI * 2 * i) / 16 + Math.random() * .4, r = 90 + Math.random() * 90;
+      p.style.background = cols[i % cols.length];
+      p.style.setProperty('--dx', Math.cos(a) * r + 'px');
+      p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px');
+      p.style.setProperty('--rot', (Math.random() * 540 - 270) + 'deg');
+      host.appendChild(p);
+    }
+    card.appendChild(host);
+    setTimeout(function () { if (host.parentNode) host.parentNode.removeChild(host); }, 1000);
+  }
+
+  function check(rawText) {
+    clearTimeout(typeTimer);
+    var c = current();
+    if (!c) return;
+    var res = $('res');
+    res.textContent = '';
+    var heard = norm(rawText);
+    if (!heard) { setNote('Fale ou digite algo antes de conferir.', true); return; }
+    var targets = [c.en].concat(c.alt || []).map(norm);
+    var ok = targets.indexOf(heard) > -1;
+    var counted = false;
+    if (!attemptDone) { attemptDone = true; counted = true; record(c.id, ok, rawText); }
+    else { var sc = store.stats[c.id]; if (sc) { sc.cur = ok ? 1 : 0; save(); } }
+    shown = true;
+    renderTarget(c);
+
+    var box = el('div', 'res ' + (ok ? 'pass' : 'fail'));
+    var v = el('div', 'verdict');
+    v.appendChild(ico(ok ? 'check' : 'x'));
+    v.appendChild(document.createTextNode(ok ? 'Passou' : 'Não passou'));
+    v.appendChild(el('small', '', counted ? '1ª tentativa' : 'repetição, não conta'));
+    box.appendChild(v);
+
+    var exp = targets[0];
+    if (!ok) { var best = 0, bs = -1; targets.forEach(function (t, i) { var m = lcsMask(t.split(' '), heard.split(' ')); var sc2 = m[0].filter(Boolean).length; if (sc2 > bs) { bs = sc2; best = i; } }); exp = targets[best]; }
+    var ea = exp.split(' '), ha = heard.split(' ');
+    var chars = ea.length === 1 && ha.length === 1;
+    var A = chars ? exp.split('') : ea, B = chars ? heard.split('') : ha;
+    var masks = ok ? [A.map(function () { return true; }), B.map(function () { return true; })] : lcsMask(A, B);
+    var cmp = el('div', 'cmp');
+    var v1 = el('span', 'v'), v2 = el('span', 'v');
+    fillTokens(v1, A, masks[0], chars ? '' : ' ');
+    fillTokens(v2, B, masks[1], chars ? '' : ' ');
+    cmp.appendChild(el('span', 'k', 'Esperado')); cmp.appendChild(v1);
+    cmp.appendChild(el('span', 'k', 'Ouvido')); cmp.appendChild(v2);
+    box.appendChild(cmp);
+
+    if (ok) {
+      box.appendChild(el('p', 'why', 'Muito bem. Diga de novo em blocos para fixar.'));
+    } else {
+      var hs = [];
+      if (c.conf && c.conf[heard]) hs.push(c.conf[heard]);
+      if (!chars) hs = hs.concat(hintsFor(ea, ha, masks[0], masks[1]));
+      else if (heard === norm(c.en).replace(/ /g, '') + 'it') hs.push('O T final virou "it". Trave o T atrás dos dentes e emende na próxima palavra.');
+      if (!hs.length) hs = ['Pode ser pronúncia ou microfone. Ouça de novo e repita em um bloco só. Se você disse certo, o microfone errou: tente outra vez.'];
+      var ul = el('ul', 'hints');
+      hs.slice(0, 3).forEach(function (h) { ul.appendChild(el('li', '', h)); });
+      box.appendChild(ul);
+      box.appendChild(el('p', 'why', 'Agora repita a versão certa em voz alta.'));
+    }
+    if (c.why) { var w = el('p', 'why'); w.appendChild(el('b', '', 'Por quê: ')); w.appendChild(document.createTextNode(c.why)); box.appendChild(w); }
+    res.appendChild(box);
+    if (ok) burst(); else { var cd = $('card'); cd.classList.remove('shake'); void cd.offsetWidth; cd.classList.add('shake'); }
+    renderMeta(c); renderList(); renderProg(); renderStrip();
+    $('heard').value = '';
+    if (listening) setNote(LIVE); else { try { $('heard').focus({ preventScroll: true }); } catch (e0) {} }
+    if (ok && store.auto) { var okId = c.id; setTimeout(function () { if (curId === okId) move(1); }, 1900); }
+  }
+
+  /* microfone: liga uma vez e fica ligado */
+  function setMicUi(on) {
+    listening = on;
+    var b = $('bMic');
+    b.className = 'mic' + (on ? ' rec' : '');
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    b.setAttribute('aria-label', on ? 'Desligar microfone' : 'Ligar microfone');
+  }
+  function stopMic() { wantMic = false; if (rec) { try { rec.stop(); } catch (e) {} } setMicUi(false); setNote(''); }
+  function openRec() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    rec = new SR();
+    rec.lang = 'en-US';
+    rec.interimResults = true;
+    rec.maxAlternatives = 5;
+    rec.continuous = true;
+    rec.onresult = function (e) {
+      for (var i = e.resultIndex; i < e.results.length; i++) {
+        var t = e.results[i][0].transcript;
+        if (e.results[i].isFinal) {
+          var c0 = current();
+          if (c0) {
+            var tg = [c0.en].concat(c0.alt || []).map(norm);
+            for (var a = 0; a < e.results[i].length; a++) {
+              var alt = e.results[i][a].transcript;
+              if (tg.indexOf(norm(alt)) > -1) { t = alt; break; }
+            }
+          }
+        }
+        $('heard').value = t;
+        if (e.results[i].isFinal) check(t);
+      }
+    };
+    rec.onerror = function (e) {
+      var code = e && e.error;
+      if (code === 'not-allowed' || code === 'service-not-allowed') {
+        wantMic = false;
+        setNote('O navegador bloqueou o microfone. Toque no cadeado ao lado do endereço, escolha Microfone > Permitir e ligue de novo. Enquanto isso, digite a resposta.', true);
+      } else if (code === 'audio-capture') {
+        wantMic = false; setNote('Não encontrei um microfone neste aparelho.', true);
+      } else if (code === 'network') {
+        wantMic = false; setNote('O reconhecimento de voz precisa de internet.', true);
+      } else if (code !== 'aborted' && code !== 'no-speech') {
+        wantMic = false; setNote('O reconhecimento de voz falhou (' + code + '). Toque no microfone para tentar de novo.', true);
+      }
+    };
+    rec.onend = function () {
+      if (wantMic) { setTimeout(function () { if (!wantMic) return; try { openRec(); } catch (err) { stopMic(); } }, 300); return; }
+      setMicUi(false);
+    };
+    rec.start();
+  }
+  function startMic() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { setNote('Este navegador não tem reconhecimento de voz. Use o Chrome ou o Edge. Você ainda pode ouvir os cards e digitar a resposta.', true); return; }
+    if (listening) { stopMic(); return; }
+    wantMic = true;
+    try { openRec(); setMicUi(true); setNote(LIVE); }
+    catch (err) { wantMic = false; setMicUi(false); setNote('Não consegui ligar o microfone. Digite a resposta no campo.', true); }
+  }
+
+  function renderTabs() {
+    var t = $('tabs'); t.textContent = '';
+    var tabs = kinds.map(function (k) { return [k, TABN[k], CARDS.filter(function (c) { return c.kind === k; }).length]; });
+    tabs.push(['err', 'Errei', CARDS.filter(function (c) { return dotStatus(c.id) === 'err'; }).length]);
+    tabs.forEach(function (x) {
+      var b = el('button', 'chip'); b.type = 'button';
+      b.appendChild(document.createTextNode(x[1] + ' '));
+      b.appendChild(el('span', 'n', '(' + x[2] + ')'));
+      b.setAttribute('aria-pressed', store.tab === x[0] ? 'true' : 'false');
+      b.addEventListener('click', function () { store.tab = x[0]; store.group = 'all'; save(); curId = null; renderAll(); });
+      t.appendChild(b);
+    });
+    var g = $('groups'); g.textContent = '';
+    var inTab = CARDS.filter(function (c) { return c.kind === store.tab && c.grp; });
+    var ids = inTab.map(function (c) { return c.grp; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
+    g.hidden = ids.length < 2;
+    if (g.hidden) return;
+    var all = el('button', 'chip', 'Todos'); all.type = 'button';
+    all.setAttribute('aria-pressed', store.group === 'all' ? 'true' : 'false');
+    all.addEventListener('click', function () { store.group = 'all'; save(); curId = null; renderAll(); });
+    g.appendChild(all);
+    ids.forEach(function (id) {
+      var meta = GROUPS.filter(function (x) { return x.id === id; })[0] || { id: id, nome: id };
+      var b = el('button', 'chip'); b.type = 'button';
+      if (meta.icone) b.appendChild(ico(meta.icone));
+      b.appendChild(document.createTextNode(meta.nome));
+      b.setAttribute('aria-pressed', store.group === id ? 'true' : 'false');
+      b.addEventListener('click', function () { store.group = id; save(); curId = null; renderAll(); });
+      g.appendChild(b);
+    });
+  }
+
+  function label(c) { return c.kind === 'q' ? c.q : (c.kind === 'fix' ? c.errado : (c.kind === 'pal' ? c.en : (c.pt || c.en))); }
+  function renderList() {
+    var l = $('list'); l.textContent = '';
+    var v = visible();
+    $('listEmpty').hidden = v.length > 0;
+    v.forEach(function (c) {
+      var b = el('button', 'cell'); b.type = 'button';
+      if (c.id === curId) b.setAttribute('aria-current', 'true');
+      var s = dotStatus(c.id);
+      var d = el('span', 'st st-' + s); d.style.marginLeft = '0'; d.appendChild(el('span', 'dot')); d.title = STLAB[s];
+      b.appendChild(d); b.appendChild(el('span', 't', label(c)));
+      b.addEventListener('click', function () { curId = c.id; renderCard(); renderList(); renderStrip(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      l.appendChild(b);
+    });
+  }
+  function renderStrip() {
+    var s = $('strip'); s.textContent = '';
+    visible().forEach(function (c, i) {
+      var b = el('button', 'seg ' + dotStatus(c.id)); b.type = 'button'; b.tabIndex = -1;
+      if (c.id === curId) b.setAttribute('aria-current', 'true');
+      b.title = (i + 1) + ': ' + label(c);
+      b.addEventListener('click', function () { curId = c.id; renderCard(); renderList(); renderStrip(); });
+      s.appendChild(b);
+    });
+  }
+  function renderProg() {
+    var ok = CARDS.filter(function (c) { return dotStatus(c.id) === 'ok'; }).length;
+    var p = $('prog'); p.textContent = '';
+    var a = el('span'); a.appendChild(ico('trophy')); a.appendChild(document.createTextNode(ok + ' de ' + CARDS.length + ' cards certos')); p.appendChild(a);
+    var b = el('span'); b.appendChild(ico('flame')); b.appendChild(document.createTextNode(store.days.length + (store.days.length === 1 ? ' dia' : ' dias') + ' de prática')); p.appendChild(b);
+  }
+  function renderAll() { renderTabs(); renderCard(); renderList(); renderStrip(); renderProg(); }
+
+  function move(delta) {
+    var v = visible(); if (!v.length) return;
+    var idx = v.map(function (x) { return x.id; }).indexOf(curId);
+    curId = v[(idx + delta + v.length) % v.length].id;
+    renderCard(); renderList(); renderStrip();
+  }
+
+  function summary() {
+    var L = [];
+    L.push('RESUMO DE PRÁTICA — ' + DECK.titulo + ' (SpeakFlow Basic)');
+    L.push('Dias com prática: ' + store.days.length + (store.days.length ? ' (' + store.days.slice().sort().map(fmt).join(', ') + ')' : ''));
+    var N = 0, K = 0;
+    CARDS.forEach(function (c) { var s = store.stats[c.id]; if (s) { N += s.n || 0; K += s.k || 0; } });
+    L.push('1ª tentativa (acumulado): ' + K + ' certas de ' + N);
+    L.push('Cards certos agora: ' + CARDS.filter(function (c) { return dotStatus(c.id) === 'ok'; }).length + ' de ' + CARDS.length);
+    L.push('Cards sem tentativa: ' + CARDS.filter(function (c) { return dotStatus(c.id) === 'new'; }).length);
+    var bad = CARDS.filter(function (c) { return dotStatus(c.id) === 'err'; });
+    L.push(bad.length ? 'Falharam na última tentativa:' : 'Nenhum card falhou na última tentativa.');
+    bad.forEach(function (c) { var s = store.stats[c.id] || {}; L.push('- [' + KLAB[c.kind] + '] ' + c.en + ' | ouvido: "' + (s.last || '') + '"'); });
+    return L.join('\n');
+  }
+
+  $('bListen').addEventListener('click', function () {
+    var c = current(); if (!c) return;
+    speak(c.kind === 'q' ? c.q : (c.tts || c.en));
+  });
+  $('bCtx').addEventListener('click', function () { var c = current(); if (c && c.ctx) speak(c.ctx); });
+  $('bHide').addEventListener('click', function () {
+    var c = current(); if (!canHide(c)) return;
+    store.hide[c.kind] = !store.hide[c.kind]; save();
+    shown = !hideOn(c); renderTarget(c); syncHideBtn(c);
+  });
+  $('bSlow').setAttribute('aria-pressed', store.slow ? 'true' : 'false');
+  $('bSlow').addEventListener('click', function () { store.slow = !store.slow; save(); $('bSlow').setAttribute('aria-pressed', store.slow ? 'true' : 'false'); });
+  $('bAuto').setAttribute('aria-pressed', store.auto ? 'true' : 'false');
+  $('bAuto').addEventListener('click', function () { store.auto = !store.auto; save(); $('bAuto').setAttribute('aria-pressed', store.auto ? 'true' : 'false'); });
+  $('bMic').addEventListener('click', startMic);
+  $('heard').addEventListener('input', function () {
+    clearTimeout(typeTimer);
+    if (!$('heard').value.trim()) return;
+    typeTimer = setTimeout(function () { check($('heard').value); }, 1800);
+  });
+  $('checkForm').addEventListener('submit', function (e) { e.preventDefault(); check($('heard').value); });
+  $('bPrev').addEventListener('click', function () { move(-1); });
+  $('bNext').addEventListener('click', function () { move(1); });
+  $('bRand').addEventListener('click', function () {
+    var v = visible(); if (v.length < 2) return;
+    var n; do { n = v[Math.floor(Math.random() * v.length)]; } while (n.id === curId);
+    curId = n.id; renderCard(); renderList(); renderStrip();
+  });
+  document.addEventListener('keydown', function (e) {
+    var tag = (document.activeElement && document.activeElement.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight') move(1);
+    if (e.key === 'ArrowLeft') move(-1);
+  });
+
+  $('bSum').addEventListener('click', function () {
+    var text = summary(), box = $('sumBox'); box.textContent = '';
+    var ta = el('textarea'); ta.readOnly = true; ta.value = text; box.appendChild(ta);
+    function fallback() { ta.focus(); ta.select(); $('sumMsg').textContent = 'Selecione e copie o texto acima.'; }
+    try { navigator.clipboard.writeText(text).then(function () { $('sumMsg').textContent = 'Resumo copiado.'; }, fallback); } catch (e) { fallback(); }
+  });
+  var resetArmed = false;
+  $('bReset').addEventListener('click', function () {
+    if (!resetArmed) {
+      resetArmed = true; $('bResetT').textContent = 'Confirmar: apagar tudo';
+      $('sumMsg').textContent = 'Isso apaga os dias de prática e o histórico de acertos deste navegador. Toque de novo para confirmar.';
+      return;
+    }
+    resetArmed = false; store.stats = {}; store.days = []; save();
+    $('bResetT').textContent = 'Recomeçar do zero'; $('sumBox').textContent = ''; $('sumMsg').textContent = 'Tudo zerado. Boa prática!';
+    renderAll();
+  });
+
+  /* tema claro/escuro */
+  function themeNow() { return document.documentElement.getAttribute('data-theme') || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+  function syncTheme() { setIcon($('bTheme'), themeNow() === 'dark' ? 'sun' : 'moon'); }
+  $('bTheme').addEventListener('click', function () {
+    var n = themeNow() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', n);
+    try { localStorage.setItem('sf-theme', n); } catch (e) {}
+    syncTheme();
+  });
+  syncTheme();
+
+  /* link direto para um card: #c=<id> */
+  try {
+    if (location.hash.indexOf('#c=') === 0) {
+      var hid = decodeURIComponent(location.hash.slice(3));
+      var hc = CARDS.filter(function (x) { return x.id === hid; })[0];
+      if (hc) { store.tab = hc.kind; store.group = 'all'; curId = hc.id; }
+    }
+  } catch (e) {}
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
